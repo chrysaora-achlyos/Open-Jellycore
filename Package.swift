@@ -14,8 +14,12 @@ let package = Package(
         .executable(name: "jelly", targets: ["jelly"])
     ],
     dependencies: [
-        .package(url: "https://github.com/simonbs/tree-sitter", from: "0.20.9-beta-2"),
-        .package(url: "https://github.com/Jellycuts/tree-sitter-jelly", from: "0.1.0"),
+        .package(url: "https://github.com/tree-sitter/tree-sitter", .upToNextMinor(from: "0.20.9"))
+        .package(
+            url: "https://github.com/chrysaora-achlyos/tree-sitter-jelly", 
+            from: "0.1.0",
+            .branch("lab000")
+         ),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     ],
