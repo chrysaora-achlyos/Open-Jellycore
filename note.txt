@@ -27,3 +27,14 @@ change
  to chrysaora-achlyos/tree-sitter-jelly"
   with .branch("lab000") appended
  
+
+#DATE   Mon Jul  8 17:49:52 CDT 2024
+trying to find my way around debugging.  This is not a xcode project, so the single stepping I thought might be available is not.
+So... I can learn how to make a Xcode command line tool using the package
+or
+So... I can explore other debugging:
+
+#DATE  Fri Jul 19 18:51:31 CDT 2024
+added test of compile return values.
+had to use regex to deal with some string values that are not fixed
+created 
