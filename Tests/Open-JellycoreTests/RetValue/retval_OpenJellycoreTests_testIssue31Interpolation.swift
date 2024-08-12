@@ -13,11 +13,11 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>CustomOutputName</key>
-				<string>Generated Magic Variable 05860D6A-649B-4068-A0E9-E3EC3A2B10CC</string>
+				<string>Generated Magic Variable 9E3C1AC8-4B54-4DBB-8D1F-0E3E7DB20F15</string>
 				<key>UUID</key>
-				<string>05860D6A-649B-4068-A0E9-E3EC3A2B10CC</string>
+				<string>9E3C1AC8-4B54-4DBB-8D1F-0E3E7DB20F15</string>
 				<key>WFTextActionText</key>
-				<string>b</string>
+				<string>Pp</string>
 			</dict>
 		</dict>
 		<dict>
@@ -32,9 +32,9 @@ extension CheckRetValueOpenJellycoreTests {
 						<key>Aggrandizements</key>
 						<array/>
 						<key>OutputName</key>
-						<string>Generated Magic Variable 05860D6A-649B-4068-A0E9-E3EC3A2B10CC</string>
+						<string>Generated Magic Variable 9E3C1AC8-4B54-4DBB-8D1F-0E3E7DB20F15</string>
 						<key>OutputUUID</key>
-						<string>05860D6A-649B-4068-A0E9-E3EC3A2B10CC</string>
+						<string>9E3C1AC8-4B54-4DBB-8D1F-0E3E7DB20F15</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
@@ -53,7 +53,7 @@ extension CheckRetValueOpenJellycoreTests {
 				<key>CustomOutputName</key>
 				<string>dict0</string>
 				<key>UUID</key>
-				<string>A408D42B-4832-418B-9C82-005418358CAC</string>
+				<string>656093D5-55B2-4CFB-A479-816D05C7A3EE</string>
 			</dict>
 		</dict>
 		<dict>
@@ -64,7 +64,7 @@ extension CheckRetValueOpenJellycoreTests {
 				<key>CustomOutputName</key>
 				<string>dict</string>
 				<key>UUID</key>
-				<string>A8465A1E-5605-4F03-98BF-D812C0B6D590</string>
+				<string>AF293F33-01F7-4591-B2BE-E7726DA8777F</string>
 				<key>WFDictionary</key>
 				<dict>
 					<key>Value</key>
@@ -74,7 +74,7 @@ extension CheckRetValueOpenJellycoreTests {
 						<key>OutputName</key>
 						<string>dict0</string>
 						<key>OutputUUID</key>
-						<string>A408D42B-4832-418B-9C82-005418358CAC</string>
+						<string>656093D5-55B2-4CFB-A479-816D05C7A3EE</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
@@ -84,7 +84,7 @@ extension CheckRetValueOpenJellycoreTests {
 				<key>WFDictionaryKey</key>
 				<string>A</string>
 				<key>WFDictionaryValue</key>
-				<string>Q</string>
+				<string>QqQ</string>
 			</dict>
 		</dict>
 		<dict>
@@ -95,7 +95,7 @@ extension CheckRetValueOpenJellycoreTests {
 				<key>CustomOutputName</key>
 				<string>magicA</string>
 				<key>UUID</key>
-				<string>EBF6DD1E-9FE0-4F20-9B73-39D7BF1E90DC</string>
+				<string>1422FD92-2463-40AD-BD1C-15575A86A437</string>
 				<key>WFDictionaryKey</key>
 				<string>A</string>
 				<key>WFInput</key>
@@ -107,7 +107,7 @@ extension CheckRetValueOpenJellycoreTests {
 						<key>OutputName</key>
 						<string>dict</string>
 						<key>OutputUUID</key>
-						<string>A8465A1E-5605-4F03-98BF-D812C0B6D590</string>
+						<string>AF293F33-01F7-4591-B2BE-E7726DA8777F</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
@@ -122,16 +122,16 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>CustomOutputName</key>
-				<string>Generated Magic Variable 5B09B4C9-1AF2-4E6F-BEF7-ED4BACBC6156</string>
+				<string>Generated Magic Variable AF1CC34C-C7FE-4B5C-B550-A009D61D201B</string>
 				<key>UUID</key>
-				<string>5B09B4C9-1AF2-4E6F-BEF7-ED4BACBC6156</string>
+				<string>AF1CC34C-C7FE-4B5C-B550-A009D61D201B</string>
 				<key>WFTextActionText</key>
 				<dict>
 					<key>Value</key>
 					<dict>
 						<key>attachmentsByRange</key>
 						<dict>
-							<key>{1, 1}</key>
+							<key>{3, 1}</key>
 							<dict>
 								<key>Aggrandizements</key>
 								<array/>
@@ -140,20 +140,20 @@ extension CheckRetValueOpenJellycoreTests {
 								<key>VariableName</key>
 								<string>varA</string>
 							</dict>
-							<key>{3, 1}</key>
+							<key>{6, 1}</key>
 							<dict>
 								<key>Aggrandizements</key>
 								<array/>
 								<key>OutputName</key>
 								<string>magicA</string>
 								<key>OutputUUID</key>
-								<string>EBF6DD1E-9FE0-4F20-9B73-39D7BF1E90DC</string>
+								<string>1422FD92-2463-40AD-BD1C-15575A86A437</string>
 								<key>Type</key>
 								<string>ActionOutput</string>
 							</dict>
 						</dict>
 						<key>string</key>
-						<string>x￼y￼z</string>
+						<string>xxx￼yy￼z</string>
 					</dict>
 					<key>WFSerializationType</key>
 					<string>WFTextTokenString</string>
@@ -172,9 +172,9 @@ extension CheckRetValueOpenJellycoreTests {
 						<key>Aggrandizements</key>
 						<array/>
 						<key>OutputName</key>
-						<string>Generated Magic Variable 5B09B4C9-1AF2-4E6F-BEF7-ED4BACBC6156</string>
+						<string>Generated Magic Variable AF1CC34C-C7FE-4B5C-B550-A009D61D201B</string>
 						<key>OutputUUID</key>
-						<string>5B09B4C9-1AF2-4E6F-BEF7-ED4BACBC6156</string>
+						<string>AF1CC34C-C7FE-4B5C-B550-A009D61D201B</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
