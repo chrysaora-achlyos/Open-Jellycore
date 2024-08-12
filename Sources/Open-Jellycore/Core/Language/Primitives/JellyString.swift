@@ -59,9 +59,10 @@ struct JellyString: JellyPrimitiveType {
     ///   - value: The String Node to create attachments for.
     ///   - scopedVariables: The scoped variables that are applicable to this ``JellyString`` and the interpolations inside of it.
     mutating func createAttachments(_ value: StringNode, scopedVariables: [Variable]) {
-        for child in value.internalNodes.filter({internalNodeFilter($0)}) {
+        for (index,child) in value.internalNodes.enumerated() {
+            if child.type != .interpolation { continue }
             let interpolationNode = StringNode.InterpolationNode(sString: child.node.string ?? "No sString", content: child.content, rawValue: child.node)
-            let key = "{\(child.localRange.lowerBound), 1}"
+            let key = "{\(index), 1}"
             if var variableReference = JellyVariableReference(interpolationNode: interpolationNode, scopedVariables: scopedVariables) {
                 variableReference.needsValueKey = false
                 variableReference.needsSerialization = false

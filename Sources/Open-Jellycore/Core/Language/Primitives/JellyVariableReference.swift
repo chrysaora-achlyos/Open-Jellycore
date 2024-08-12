@@ -181,7 +181,7 @@ struct JellyVariableReference: JellyAny, Codable {
             case .magicVariable:
                 variableType = .magicVariable
             case .string:
-                variableType = .magicVariable
+                variableType = .variable
             case .number:
                 variableType = .magicVariable
             case .parameterInput:

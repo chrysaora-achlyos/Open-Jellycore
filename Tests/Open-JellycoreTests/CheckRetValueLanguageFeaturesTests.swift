@@ -170,5 +170,19 @@ final class CheckRetValueOpenJellycoreTests: XCTestCase {
         try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
     }
 
+    func testIssue31Interpolation() throws {
+        let expectedStr = retval_OpenJellycoreTests_testIssue31Interpolation
+        let testString =  """
+        import Shortcuts
+        
+        var varA = "b"
+        dictionary() >> dict0
+        setValue(key: "A", value: "Q", dictionary: dict0) >> dict
+        valueFor(dictionary: dict, key: "A") >> magicA
+        var varB = "x${varA}y${magicA}z"
+        """
+        try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
+    }
+
     
 }
