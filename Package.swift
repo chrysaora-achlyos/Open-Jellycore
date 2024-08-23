@@ -15,7 +15,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/tree-sitter/tree-sitter", .upToNextMinor(from: "0.20.9")),
-        .package( url: "https://github.com/chrysaora-achlyos/tree-sitter-jelly", branch: "tsEDU000"),
+        .package( url: "https://github.com/chrysaora-achlyos/tree-sitter-jelly", branch: "tsEDU001"),
         .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
     ],

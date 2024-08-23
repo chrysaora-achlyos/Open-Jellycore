@@ -657,6 +657,10 @@ extension Compiler {
             if Int(valuePrimitive.content) != nil {
                 nodeType = .number
             }
+            // more patching upstream mistake, but likely error is in CompileNode not tree-sitter-jelly grammer
+            else if Float(valuePrimitive.content) != nil {
+                nodeType = .number
+            }
             if nodeType == .string {
                 let textUUID = UUID().uuidString
                 let magicVariable = Variable(uuid: textUUID, name: "Generated Magic Variable \(textUUID)", valueType: .magicVariable, value: "Text")
