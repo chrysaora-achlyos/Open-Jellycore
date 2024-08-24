@@ -165,7 +165,7 @@ final class NumberNode: CoreNode, CorePrimitiveNode {
     ///   - content: The content of the `rawValue`. This is passed in as a constructor because it requires `rawValue`'s parent's content to retrieve it's contents
     ///   - rawValue: The raw TreeSitter node that this node wraps.
     init(sString: String, content: String, rawValue: TreeSitterNode) {
-        self.type = .identifier
+        self.type = .number
         self.sString = sString
         self.content = content
         self.rawValue = rawValue

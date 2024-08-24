@@ -649,18 +649,9 @@ extension Compiler {
 
 
         if let valuePrimitive = node.valuePrimitive {
-            var nodeType = valuePrimitive.type
+            let nodeType = valuePrimitive.type
             var actions: [WFAction] = []
 
-            #warning("This bug needs to be fixed in the tree-sitter-jelly grammar")
-            // If an identifier is purely numbers we want to swap it to a number because it was incorrectly picked up by the grammar
-            if Int(valuePrimitive.content) != nil {
-                nodeType = .number
-            }
-            // more patching upstream mistake, but likely error is in CompileNode not tree-sitter-jelly grammer
-            else if Float(valuePrimitive.content) != nil {
-                nodeType = .number
-            }
             if nodeType == .string {
                 let textUUID = UUID().uuidString
                 let magicVariable = Variable(uuid: textUUID, name: "Generated Magic Variable \(textUUID)", valueType: .magicVariable, value: "Text")
