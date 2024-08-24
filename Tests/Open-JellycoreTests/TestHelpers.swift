@@ -45,9 +45,9 @@ func similarString(lhs: String?, rhs: String?) -> Bool {
             let magicMumble = "<string>Generated Magic Variable MUMBLE</string>"
             let funcDispatchMumble = "<string>function-dispatch-MUMBLE</string>"
 
-            let regex0 = try Regex("<string>([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)</string>")
-            let regex1 = try Regex("<string>Generated Magic Variable ([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)</string>")
-            let regex2 = try Regex("<string>function-dispatch-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)-([0-9A-F]+)</string>")
+            let regex0 = try Regex("<string>([0-9A-F]{8})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{12})</string>")
+            let regex1 = try Regex("<string>Generated Magic Variable ([0-9A-F]{8})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{12})</string>")
+            let regex2 = try Regex("<string>function-dispatch-([0-9A-F]{8})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{12})</string>")
 
             let magicLHS = (lhs ?? "0")
                 .replacing(regex0,with:mumble)
