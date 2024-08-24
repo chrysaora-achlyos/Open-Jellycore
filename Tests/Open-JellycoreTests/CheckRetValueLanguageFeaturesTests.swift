@@ -183,5 +183,21 @@ final class CheckRetValueOpenJellycoreTests: XCTestCase {
         try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
     }
 
-    
+    func testIssue27Float() throws {
+        let expectedStr = retval_OpenJellycoreTests_testIssue27Float
+        let testString =  """
+        var varA = 0.9
+        """
+        try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
+    }
+
+    func testIssue27Int() throws {
+        let expectedStr = retval_OpenJellycoreTests_testIssue27Int
+        let testString =  """
+        var varA = 0
+        """
+        try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
+    }
+
+
 }
