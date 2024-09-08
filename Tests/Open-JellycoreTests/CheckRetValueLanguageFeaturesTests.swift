@@ -199,5 +199,14 @@ final class CheckRetValueOpenJellycoreTests: XCTestCase {
         try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
     }
 
+    func testIssue29() throws {
+        let expectedStr = retval_OpenJellycoreTests_testIssue29
+        let testString = """
+        import Shortcuts
+        var cmsURL   = "http://www.jahoo.com"
+        url(url: cmsURL )
+        """
+        try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
 
+    }
 }
