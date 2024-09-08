@@ -238,6 +238,16 @@ final class StringNode: CoreNode, CorePrimitiveNode {
             }
         }
         
+        // self interpolation, used to turn identifier with varName into the equivalent of "${varName}"
+        init(sString: String, content: String, rawValue: TreeSitterNode, identifierNode: IdentifierNode) {
+            self.type = .stringInterpolation
+            self.sString = sString
+            self.content = content
+            self.originalContent = content
+            self.rawValue = rawValue
+            self.identifierNode = identifierNode
+        }
+        
         
         func getIdentifier() -> (content: String, node: TreeSitterNode)? {
             if let node = rawValue.getChild(by: "identifier") {

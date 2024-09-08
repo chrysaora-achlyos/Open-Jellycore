@@ -9,6 +9,7 @@ function usage() {
 }
 
 rmopt="-i"
+dstr=""
 jellypath="/opt/homebrew/bin/jelly"
 while getopts "dhy" OPTIONS; do
   case ${OPTIONS} in
@@ -16,6 +17,7 @@ while getopts "dhy" OPTIONS; do
        exit 0 
        ;;
     d) jellypath="./jelly"
+       dstr="d"
        ;;
     y) rmopt=""
        ;;
@@ -43,10 +45,10 @@ fi
 
 rm ${rmopt} ${basefn}.out
 rm ${rmopt} ${basefn}.err
-rm ${rmopt} u_${basefn}.shortcut
+rm ${rmopt} u${dstr}_${basefn}.shortcut
 
 # Compile the shortcut and capture output
-${jellypath} ${basefn}.jelly --export --out u_${basefn}.shortcut > ${basefn}.out 2> ${basefn}.err
+${jellypath} ${basefn}.jelly --export --out u${dstr}_${basefn}.shortcut > ${basefn}.out 2> ${basefn}.err
 status=$?
 #echo "Status: $status"
 
@@ -60,6 +62,6 @@ if [ ${gstatus} != "1" ]; then
 fi
 
 rm ${rmopt} ${basefn}.shortcut
-shortcuts sign --mode anyone --input "u_${basefn}.shortcut" --output "${basefn}.shortcut"
+shortcuts sign --mode anyone --input "u${dstr}_${basefn}.shortcut" --output "${basefn}.shortcut"
 
 open -a shortcuts "${basefn}.shortcut"

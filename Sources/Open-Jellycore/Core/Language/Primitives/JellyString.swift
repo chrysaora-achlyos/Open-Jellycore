@@ -49,11 +49,27 @@ struct JellyString: JellyPrimitiveType {
         if let stringNode = value as? StringNode {
             self.init(stringNode.content)
             createAttachments(stringNode, scopedVariables: scopedVariables)
+        } else if let identifierNode = value as? IdentifierNode {
+            self.init("\u{FFFC}")  //Object Replacement Character
+            createAttachment(identifierNode, scopedVariables: scopedVariables)
         } else {
             self.init(value.content)
         }
     }
-    
+
+    /// Creates a string attachment, and convert varName to "${varName}"
+    mutating func createAttachment(_ value: IdentifierNode, scopedVariables: [Variable]) {
+        let key = "{0, 1}"
+        let interpolationNode = StringNode.InterpolationNode(sString: "No sString", content: value.content, rawValue: value.rawValue, identifierNode: value)
+        if var variableReference = JellyVariableReference(interpolationNode: interpolationNode, scopedVariables: scopedVariables) {
+            variableReference.needsValueKey = false
+            variableReference.needsSerialization = false
+            attachmentsByRange = [key: variableReference]
+        } else {
+            EventReporter.shared.reportError(error: .variableDoesNotExist(variable: value.content), node: value)
+        }
+    }
+
     /// Creates a string attachment. String attachments are shortcuts interpolation values that use the object Unicode Character to hold a spot in the string. This function loops through the internal nodes and creates a new attachment for each of the internal nodes that is an interpolation node.
     /// - Parameters:
     ///   - value: The String Node to create attachments for.
@@ -75,7 +91,7 @@ struct JellyString: JellyPrimitiveType {
                     return first
                 }
                 
-                self.value = self.value.replacingOccurrences(of: "\(child.content)", with: "￼")
+                self.value = self.value.replacingOccurrences(of: "\(child.content)", with: "\u{FFFC}")
                 key0 += 1
             } else {
                 EventReporter.shared.reportError(error: .variableDoesNotExist(variable: interpolationNode.identifierNode?.content ?? interpolationNode.content), node: interpolationNode)

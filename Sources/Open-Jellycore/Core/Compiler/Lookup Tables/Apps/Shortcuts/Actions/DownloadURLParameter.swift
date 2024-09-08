@@ -7,9 +7,9 @@
 
 struct DownloadURLParameter: ParameterProtocol, Codable {
 	var WFURL: JellyString?
-	var method: Jelly_WFHTTPMethod?
+	var WFHTTPMethod: Jelly_WFHTTPMethod?
 	var WFHTTPHeaders: JellyDictionary?
-	var requestType: Jelly_WFHTTPBodyType?
+	var WFHTTPBodyType: Jelly_WFHTTPBodyType?
 	var WFJSONValues: JellyDictionary?
 	var WFRequestVariable: JellyVariableReference?
 
@@ -23,7 +23,7 @@ struct DownloadURLParameter: ParameterProtocol, Codable {
             EventReporter.shared.reportError(error: .missingParameter(function: "downloadURL", name: "url"), node: nil)
         }
         if let value = call.first(where: { node in return node.slotName == "method" }) {
-            parameters.method = Jelly_WFHTTPMethod(parameterItem: value, scopedVariables: scopedVariables)
+            parameters.WFHTTPMethod = Jelly_WFHTTPMethod(parameterItem: value, scopedVariables: scopedVariables)
         } else {
             EventReporter.shared.reportError(error: .missingParameter(function: "downloadURL", name: "method"), node: nil)
         }
@@ -33,7 +33,7 @@ struct DownloadURLParameter: ParameterProtocol, Codable {
             EventReporter.shared.reportError(error: .missingParameter(function: "downloadURL", name: "headers"), node: nil)
         }
         if let value = call.first(where: { node in return node.slotName == "requestType" }) {
-            parameters.requestType = Jelly_WFHTTPBodyType(parameterItem: value, scopedVariables: scopedVariables)
+            parameters.WFHTTPBodyType = Jelly_WFHTTPBodyType(parameterItem: value, scopedVariables: scopedVariables)
         } else {
             EventReporter.shared.reportError(error: .missingParameter(function: "downloadURL", name: "requestType"), node: nil)
         }

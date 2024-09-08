@@ -92,7 +92,8 @@ public final class Compiler {
         do {
             let data = try encoder.encode(shortcut)
             if let stringRepresentation = String(data: data, encoding: .utf8) {
-                return stringRepresentation
+                // TODO: is this the only character entity that should be explicit?
+                return stringRepresentation.replacingOccurrences(of: "<string>\u{FFFC}</string>", with: "<string>&#xFFFC;</string>")
             } else {
                 throw JellycoreError.unableToEncode(identifier: "WFShortcut")
             }

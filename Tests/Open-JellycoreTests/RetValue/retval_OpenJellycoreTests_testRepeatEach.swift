@@ -13,7 +13,7 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>GroupingIdentifier</key>
-				<string>BE89FBD0-001D-44C7-A437-1555F6CFD2BD</string>
+				<string>4A3DA0B9-1797-4341-A7E7-6CD8B5979B59</string>
 				<key>WFControlFlowMode</key>
 				<integer>0</integer>
 				<key>WFInput</key>
@@ -38,7 +38,27 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>WFTextActionText</key>
-				<string>RepeatIndex</string>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>Aggrandizements</key>
+								<array/>
+								<key>Type</key>
+								<string>Variable</string>
+								<key>VariableName</key>
+								<string>Repeat Index</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>&#xFFFC;</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
 			</dict>
 		</dict>
 		<dict>
@@ -47,7 +67,7 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>GroupingIdentifier</key>
-				<string>BE89FBD0-001D-44C7-A437-1555F6CFD2BD</string>
+				<string>4A3DA0B9-1797-4341-A7E7-6CD8B5979B59</string>
 				<key>WFControlFlowMode</key>
 				<integer>2</integer>
 			</dict>
