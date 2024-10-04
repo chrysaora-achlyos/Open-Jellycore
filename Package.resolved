@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/chrysaora-achlyos/tree-sitter-jelly",
       "state" : {
-        "branch" : "tsEDU001",
-        "revision" : "7e6b32ecbd62f681f0dabbab151f716be1dcedaf"
+        "branch" : "tsEDU002",
+        "revision" : "36fc125ea3dc5c8caea8fbd9dab2f5196358aca8"
       }
     }
   ],
