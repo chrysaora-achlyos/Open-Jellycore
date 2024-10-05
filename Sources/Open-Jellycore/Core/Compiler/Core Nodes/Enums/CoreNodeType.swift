@@ -42,4 +42,5 @@ enum CoreNodeType: String {
     case variableProperty = "variable_property"
     case variablePropertyType = "variable_property_type"
     case error = "ERROR"
+    case jsonObjectValue = "json_object_value"
 }

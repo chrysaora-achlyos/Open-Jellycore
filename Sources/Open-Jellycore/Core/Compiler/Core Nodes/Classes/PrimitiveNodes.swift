@@ -22,6 +22,8 @@ struct PrimitiveFactory {
             return ArrayNode(sString: sString, content: content, rawValue: node)
         } else if node.type == CoreNodeType.string.rawValue || node.type ==  CoreNodeType.multiString.rawValue {
             return StringNode(sString: sString, content: content, rawValue: node)
+        } else if node.type == CoreNodeType.jsonObjectValue.rawValue {
+            return JsonObjectValueNode(sString: sString, content: content, rawValue: node)
         }
         return nil
     }
@@ -335,6 +337,27 @@ final class StringNode: CoreNode, CorePrimitiveNode {
         }
         self.content = tempContent
     }
+}
+
+/// A node that represents a jsonObjectValue primitive.
+final class JsonObjectValueNode: CoreNode, CorePrimitiveNode {
+    var type: CoreNodeType
+    var sString: String
+    var content: String
+    var rawValue: TreeSitterNode
+    
+    /// Initializes a Numer  node.
+    /// - Parameters:
+    ///   - sString: The TreeSitter String representation of the `rawValue` node.
+    ///   - content: The content of the `rawValue`. This is passed in as a constructor because it requires `rawValue`'s parent's content to retrieve it's contents
+    ///   - rawValue: The raw TreeSitter node that this node wraps.
+    init(sString: String, content: String, rawValue: TreeSitterNode) {
+        self.type = .jsonObjectValue
+        self.sString = sString
+        self.content = content
+        self.rawValue = rawValue
+    }
+    
 }
 
 // TODO: Refactor this out and make compiler nodes be generated in an analysis step where the source code is altered to better fit. Or add the ability to re-parse small strings when needed.
