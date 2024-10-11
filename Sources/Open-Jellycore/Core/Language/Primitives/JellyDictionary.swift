@@ -55,7 +55,8 @@ struct JellyDictionary: JellyPrimitiveType {
         
         if value.content.contains("{") {
             // Parse JSON
-            let deEscaped = value.content.replacingOccurrences(of: #"\""#, with: #"""#)
+            // TODO
+            let deEscaped = (value.type.rawValue == "string") ? value.content.replacingOccurrences(of: #"\""#, with: #"""#) : value.content
             let data = Data(deEscaped.utf8)
             do {
                 guard let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
@@ -176,21 +177,6 @@ struct JellyDictionary: JellyPrimitiveType {
                     "WFValue": valueDictionary
                 ]
                 shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
-            } else if let value = item as? Bool {
-                let valueDictionary = JellyBoolean(value)
-                let fieldValueItem: [String: Any] = [
-                    "WFItemType": JellyInteger(4),
-                    "WFValue": valueDictionary
-                ]
-                shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
-                
-            } else if let value = item as? Double {
-                let valueDictionary = JellyString("\(value)")
-                let fieldValueItem: [String: Any] = [
-                    "WFItemType": JellyInteger(3),
-                    "WFValue": valueDictionary
-                ]
-                shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
             } else if let value = item as? String {
                 // TODO: Add back interpolation support for dictionaries
                 let valueDictionary = JellyString(value)
@@ -199,6 +185,30 @@ struct JellyDictionary: JellyPrimitiveType {
                     "WFValue": valueDictionary
                 ]
                 shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
+            } else if let value = item as? NSNumber {
+                switch CFGetTypeID(value as CFTypeRef) {
+                case CFBooleanGetTypeID():  // Boolean
+                    print ("Boolean", value)
+                    let boolValue = (value==1) ? true : false
+                    let valueDictionary: [String: Any] = [
+                        "Value": boolValue,
+                        "WFSerializationType": "WFNumberSubstitutableState"
+                    ]
+                    let fieldValueItem: [String: Any] = [
+                        "WFItemType": JellyInteger(4),
+                        "WFValue": valueDictionary
+                    ]
+                    shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
+                case CFNumberGetTypeID():  // Number
+                    let valueDictionary = JellyString("\(value)")
+                    let fieldValueItem: [String: Any] = [
+                        "WFItemType": JellyInteger(3),
+                        "WFValue": valueDictionary
+                    ]
+                    shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
+                default:
+                    break
+                }
             }
         }
         
