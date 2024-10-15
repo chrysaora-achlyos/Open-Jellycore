@@ -748,8 +748,22 @@ extension Compiler {
                 magicVariable = Variable(uuid: UUID().uuidString, name: magicVariableNode.identifier?.content ?? "No Name", valueType: .magicVariable, value: foundFunction)
                 scope.variables.append(magicVariable!) // Variable has to initialize so it is okay to bang out the variable here
             }
-            
+
+            // MRA BEGIN
+            if let mName = magicVariable?.name {
+                if let abc = Scope.find(mName, in: scope.variables) {
+                    abc.dongle = magicVariable?.uuid ?? ""
+                }
+            }
+            // MRA END
             let builtFunction = foundFunction.build(call: node.parameters, magicVariable: magicVariable, scopedVariables: scope.variables)
+            // MRA BEGIN
+            if let mName = magicVariable?.name {
+                if let abc = Scope.find(mName, in: scope.variables) {
+                    print(abc.dongle)
+                }
+            }
+            // MRA END
             return [builtFunction]
         } else {
             if let customFunction = scope.functions.first(where: { function in

@@ -51,12 +51,22 @@ struct JellyDictionary: JellyPrimitiveType {
     ///   - value: the core node to convert to a ``JellyDictionary``.
     ///   - scopedVariables: the variables that are in the scope of the ``JellyDictionary``..
     init(_ value: CoreNode, scopedVariables: [Variable]) {
+        var deEscaped = ""
         self.value = [:]
-        
-        if value.content.contains("{") {
+        if value.type.rawValue == "identifier" {
+            if let variable = Scope.find(value.content, in: scopedVariables) {
+                deEscaped = variable.dongle
+            }
+        }
+        if deEscaped != "" || value.content.contains("{") {
             // Parse JSON
             // TODO
-            let deEscaped = (value.type.rawValue == "string") ? value.content.replacingOccurrences(of: #"\""#, with: #"""#) : value.content
+            if (deEscaped == "") {
+                deEscaped = (value.type.rawValue == "string") ? value.content.replacingOccurrences(of: #"\""#, with: #"""#) : value.content
+            }
+            if let v = scopedVariables.first(where: { variable in return variable.uuid == variable.dongle}) {
+                v.dongle = deEscaped
+            }
             let data = Data(deEscaped.utf8)
             do {
                 guard let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {

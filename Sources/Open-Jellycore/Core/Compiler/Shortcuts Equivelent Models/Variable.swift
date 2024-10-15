@@ -26,6 +26,7 @@ final class Variable {
     var valueType: ValueType
     /// A possible value that the variable contains
     var value: Any?
+    var dongle: String
     
     /// A simple constructor for a variable
     /// - Parameters:
@@ -38,5 +39,6 @@ final class Variable {
         self.name = name
         self.valueType = valueType
         self.value = value
+        self.dongle = ""
     }
 }
