@@ -51,19 +51,11 @@ struct JellyDictionary: JellyPrimitiveType {
     ///   - value: the core node to convert to a ``JellyDictionary``.
     ///   - scopedVariables: the variables that are in the scope of the ``JellyDictionary``..
     init(_ value: CoreNode, scopedVariables: [Variable]) {
-        var deEscaped = ""
         self.value = [:]
-        if value.type.rawValue == "identifier" {
-            if let variable = Scope.find(value.content, in: scopedVariables) {
-                deEscaped = variable.dongle
-            }
-        }
-        if deEscaped != "" || value.content.contains("{") {
-            // Parse JSON
-            // TODO
-            if (deEscaped == "") {
-                deEscaped = (value.type.rawValue == "string") ? value.content.replacingOccurrences(of: #"\""#, with: #"""#) : value.content
-            }
+        let deEscaped = preprocess(value, scopedVariables: scopedVariables)
+
+        if deEscaped != ""  {
+            // cache deEscaped in case it is reference by identifier in future KLUDGE
             if let v = scopedVariables.first(where: { variable in return variable.uuid == variable.dongle}) {
                 v.dongle = deEscaped
             }
@@ -82,6 +74,26 @@ struct JellyDictionary: JellyPrimitiveType {
         }
     }
     
+    /// get a string to interpret as JSON,
+    ///   strings with escaped double quotes -- legacy
+    ///   jsonObjectValue -- json parsed from between { and }
+    ///   identifier -- use a cached copy of string from previous dictionary(json: ...) >> <varName> processing
+    func preprocess(_ value: CoreNode, scopedVariables: [Variable]) -> String {
+        if value.type.rawValue == "identifier" {
+            if let variable = Scope.find(value.content, in: scopedVariables) {
+                if let retStr = variable.value as? String {
+                    return retStr
+                }
+                return variable.dongle
+            }
+        } else if value.type.rawValue == "json_object_value" {
+            return value.content
+        } else if value.type.rawValue == "string" &&  value.content.contains("{") {
+            return value.content.replacingOccurrences(of: #"\""#, with: #"""#)
+        }
+        return ""
+    }
+
     /// Converts a JSON dictionary object of type [String: Any] into a Jelly representation of a dictionary,[String: QuantumValue]
     /// - Parameters:
     ///   - object: The JSON object to convert

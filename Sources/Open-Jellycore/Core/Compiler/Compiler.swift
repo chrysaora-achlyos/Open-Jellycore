@@ -679,6 +679,32 @@ extension Compiler {
                     scope.variables.append(Variable(uuid: UUID().uuidString, name: node.name, valueType: .string, value: node.value))
                 }
                 actions.append(variableAction)
+            } else if nodeType == .jsonObjectValue {
+                let textUUID = UUID().uuidString
+                let magicVariable = Variable(uuid: textUUID, name: "Generated Magic Variable \(textUUID)", valueType: .magicVariable, value: "Text")
+                
+                if let foundFunction = CompilerLookupTables.Library.shortcuts.functionTable["text"] {
+                    let call: [FunctionCallParameterItem] = [
+                        FunctionCallParameterItem(slotName: "text", item: valuePrimitive)
+                    ]
+                    let builtFunction = foundFunction.build(call: call, magicVariable: magicVariable, scopedVariables: scope.variables)
+                    
+                    actions.append(builtFunction)
+                }
+                
+                
+                let variableAction = WFAction(WFWorkflowActionIdentifier: "is.workflow.actions.setvariable", WFWorkflowActionParameters: ["WFInput": QuantumValue(JellyVariableReference(magicVariable, scopedVariables: scope.variables)), "WFVariableName": QuantumValue(node.name)])
+                
+                // Add the magic variable pointing to the string function to the scope
+                scope.variables.append(magicVariable)
+                if let existingVariable {
+                    existingVariable.value = node.value
+                    existingVariable.valueType = .string
+                } else {
+                    // Add the variable we just created to the scope
+                    scope.variables.append(Variable(uuid: UUID().uuidString, name: node.name, valueType: .string, value: node.value))
+                }
+                actions.append(variableAction)
             } else if nodeType == .number {
                 let numberUUID = UUID().uuidString
                 let magicVariable = Variable(uuid: numberUUID, name: "Generated Magic Variable \(numberUUID)", valueType: .magicVariable, value: "Text")
@@ -749,21 +775,12 @@ extension Compiler {
                 scope.variables.append(magicVariable!) // Variable has to initialize so it is okay to bang out the variable here
             }
 
-            // MRA BEGIN
             if let mName = magicVariable?.name {
-                if let abc = Scope.find(mName, in: scope.variables) {
-                    abc.dongle = magicVariable?.uuid ?? ""
+                if let workingVar = Scope.find(mName, in: scope.variables) {
+                    workingVar.dongle = magicVariable?.uuid ?? ""
                 }
             }
-            // MRA END
             let builtFunction = foundFunction.build(call: node.parameters, magicVariable: magicVariable, scopedVariables: scope.variables)
-            // MRA BEGIN
-            if let mName = magicVariable?.name {
-                if let abc = Scope.find(mName, in: scope.variables) {
-                    print(abc.dongle)
-                }
-            }
-            // MRA END
             return [builtFunction]
         } else {
             if let customFunction = scope.functions.first(where: { function in
