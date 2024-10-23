@@ -215,7 +215,7 @@ final class ArrayNode: CoreNode, CorePrimitiveNode {
 }
 
 /// A node that represents a string primitive. This is one of the most complex primitive nodes because it needs to deal with string interpolation.
-final class StringNode: CoreNode, CorePrimitiveNode {
+class LikeStringNode: CoreNode, CorePrimitiveNode {
     final class InterpolationNode: CoreNode, CorePrimitiveNode {
         var type: CoreNodeType
         var sString: String
@@ -339,25 +339,15 @@ final class StringNode: CoreNode, CorePrimitiveNode {
     }
 }
 
+final class StringNode: LikeStringNode {
+}
+
 /// A node that represents a jsonObjectValue primitive.
-final class JsonObjectValueNode: CoreNode, CorePrimitiveNode {
-    var type: CoreNodeType
-    var sString: String
-    var content: String
-    var rawValue: TreeSitterNode
-    
-    /// Initializes a Numer  node.
-    /// - Parameters:
-    ///   - sString: The TreeSitter String representation of the `rawValue` node.
-    ///   - content: The content of the `rawValue`. This is passed in as a constructor because it requires `rawValue`'s parent's content to retrieve it's contents
-    ///   - rawValue: The raw TreeSitter node that this node wraps.
-    init(sString: String, content: String, rawValue: TreeSitterNode) {
+final class JsonObjectValueNode: LikeStringNode {
+    override init(sString: String, content: String, rawValue: TreeSitterNode) {
+        super.init(sString: sString, content: content, rawValue: rawValue)
         self.type = .jsonObjectValue
-        self.sString = sString
-        self.content = content
-        self.rawValue = rawValue
     }
-    
 }
 
 // TODO: Refactor this out and make compiler nodes be generated in an analysis step where the source code is altered to better fit. Or add the ability to re-parse small strings when needed.

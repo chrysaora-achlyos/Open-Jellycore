@@ -49,6 +49,9 @@ struct JellyString: JellyPrimitiveType {
         if let stringNode = value as? StringNode {
             self.init(stringNode.content)
             createAttachments(stringNode, scopedVariables: scopedVariables)
+        } else if let stringNode = value as? JsonObjectValueNode {
+            self.init(stringNode.content)
+            createAttachments(stringNode, scopedVariables: scopedVariables)
         } else if let identifierNode = value as? IdentifierNode {
             self.init("\u{FFFC}")  //Object Replacement Character
             createAttachment(identifierNode, scopedVariables: scopedVariables)
@@ -74,7 +77,7 @@ struct JellyString: JellyPrimitiveType {
     /// - Parameters:
     ///   - value: The String Node to create attachments for.
     ///   - scopedVariables: The scoped variables that are applicable to this ``JellyString`` and the interpolations inside of it.
-    mutating func createAttachments(_ value: StringNode, scopedVariables: [Variable]) {
+    mutating func createAttachments(_ value: LikeStringNode, scopedVariables: [Variable]) {
         var key0 = 0
         for child in value.internalNodes {
             if child.type != .interpolation {
