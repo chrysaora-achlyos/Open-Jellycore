@@ -300,10 +300,20 @@ class LikeStringNode: CoreNode, CorePrimitiveNode {
         self.content = content
         self.rawValue = rawValue
         
+    }
+    
+
+    
+
+}
+
+final class StringNode: LikeStringNode {
+    override init(sString: String, content: String, rawValue: TreeSitterNode) {
+        super.init(sString: sString, content: content, rawValue: rawValue)
+        
         self.collectValues()
         self.trimContent()
     }
-    
     /// Remove surrounding quotes from the content of a string.
     private func trimContent() {
         if content.hasPrefix("\"") {
@@ -313,7 +323,6 @@ class LikeStringNode: CoreNode, CorePrimitiveNode {
             content.removeLast()
         }
     }
-    
     /// Collect all of the interpolation within the string. This function walks through the children of the original node and reconstructs a new content variable based on the internal nodes.
     private func collectValues() {
         let rawValueStartByte = rawValue.startByte
@@ -339,14 +348,35 @@ class LikeStringNode: CoreNode, CorePrimitiveNode {
     }
 }
 
-final class StringNode: LikeStringNode {
-}
-
 /// A node that represents a jsonObjectValue primitive.
 final class JsonObjectValueNode: LikeStringNode {
     override init(sString: String, content: String, rawValue: TreeSitterNode) {
         super.init(sString: sString, content: content, rawValue: rawValue)
         self.type = .jsonObjectValue
+        
+        self.collectValues()
+    }
+    private func collectValues() {
+        let rawValueStartByte = rawValue.startByte
+        let rawValueEndByte = rawValue.endByte
+        var tempContent = ""
+        for (offset, child) in rawValue.getChildren().enumerated() {
+            let contents = rawValue.getContents(of: child, in: content)
+            tempContent += contents
+            
+            let fieldName = rawValue.getFieldNameForChild(index: offset)
+            let adjustedStartByte = rawValueStartByte + (child.startByte - rawValueStartByte) // This will be positive
+            let adjustedEndByte = rawValueEndByte + (child.endByte - rawValueEndByte) // This will be negative
+            
+            let range: Range<Int> = adjustedStartByte ..< adjustedEndByte
+
+            if fieldName == "interpolation" {
+                internalNodes.append(InternalNode(type: .interpolation, node: child, localRange: range, content: contents))
+            } else {
+                internalNodes.append(InternalNode(type: .text, node: child, localRange: range, content: contents))
+            }
+        }
+        self.content = tempContent
     }
 }
 
