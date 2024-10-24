@@ -183,7 +183,7 @@ struct JellyVariableReference: JellyAny, Codable {
             case .string:
                 variableType = .variable
             case .number:
-                variableType = .magicVariable
+                variableType = .variable    // ?? this is string interpolation, what does it matter the original type of value??
             case .parameterInput:
                 variableType = .magicVariable
             case .global:
