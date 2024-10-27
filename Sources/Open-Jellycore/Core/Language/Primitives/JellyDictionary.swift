@@ -252,5 +252,7 @@ struct JellyDictionary: JellyPrimitiveType {
         var container = encoder.container(keyedBy: EncodingKeys.self)
         
         try container.encode(value, forKey: .value)
+        try container.encode("WFDictionaryFieldValue", forKey: .serializationType)
+
     }
 }
