@@ -84,9 +84,9 @@ struct JellyVariableReference: JellyAny, Codable {
         case .magicVariable:
             variableType = .magicVariable
         case .string:
-            variableType = .magicVariable
+            variableType = .variable        // ?? why all .magicVariable ??
         case .number:
-            variableType = .magicVariable
+            variableType = .variable        // ?? why all .magicVariable ??
         case .parameterInput:
             variableType = .magicVariable
         case .global:

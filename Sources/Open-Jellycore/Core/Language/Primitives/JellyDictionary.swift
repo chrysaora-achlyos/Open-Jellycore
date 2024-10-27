@@ -103,7 +103,8 @@ struct JellyDictionary: JellyPrimitiveType {
         var shortcutsFieldValueItems: [QuantumValue] = []
         
         for item in object {
-            let keyDictionary = JellyString(item.key)
+            //let keyDictionary = JellyString(item.key)
+            let keyDictionary: [String: Any] = ["Value": [ "string": JellyString(item.key) ], "WFSerializationType": "WFTextTokenString"]
             
             if let value = item.value as? [Any] {
                 let convertedArray = convertJSONArrayToShortcutsDictionaryArray(array: value, scopeVariables: scopedVariables)
@@ -134,7 +135,8 @@ struct JellyDictionary: JellyPrimitiveType {
                 shortcutsFieldValueItems.append(QuantumValue(fieldValueItem))
             } else if let value = item.value as? String {
                 // TODO: Add back interpolation support for dictionaries
-                let valueDictionary = JellyString(value)
+//                let valueDictionary = JellyString(value)
+                let valueDictionary: [String: Any] = ["Value": [ "string": JellyString(value) ], "WFSerializationType": "WFTextTokenString"]
                 let fieldValueItem: [String: Any] = [
                     "WFItemType": JellyInteger(0),
                     "WFKey": keyDictionary,
