@@ -30,6 +30,13 @@ final class Issue19Test: XCTestCase {
          """)
     }
     
+    func testIssue19Test002BoolVal() throws {
+        try execute(with: """
+         import Shortcuts
+         dictionary(json: {"a": true}) >> h0
+         """)
+    }
+    
     func testIssue19Test003() throws {
         try execute(with: """
          import Shortcuts
