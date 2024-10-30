@@ -13,9 +13,9 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>CustomOutputName</key>
-				<string>Generated Magic Variable 08DFD688-1170-4BC7-B8C1-D2896C313D1A</string>
+				<string>Generated Magic Variable EB9D5B74-DDDD-4127-8935-0A11AF74FEB0</string>
 				<key>UUID</key>
-				<string>08DFD688-1170-4BC7-B8C1-D2896C313D1A</string>
+				<string>EB9D5B74-DDDD-4127-8935-0A11AF74FEB0</string>
 				<key>WFNumberActionNumber</key>
 				<real>42</real>
 			</dict>
@@ -32,9 +32,9 @@ extension CheckRetValueOpenJellycoreTests {
 						<key>Aggrandizements</key>
 						<array/>
 						<key>OutputName</key>
-						<string>Generated Magic Variable 08DFD688-1170-4BC7-B8C1-D2896C313D1A</string>
+						<string>Generated Magic Variable EB9D5B74-DDDD-4127-8935-0A11AF74FEB0</string>
 						<key>OutputUUID</key>
-						<string>08DFD688-1170-4BC7-B8C1-D2896C313D1A</string>
+						<string>EB9D5B74-DDDD-4127-8935-0A11AF74FEB0</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
@@ -56,12 +56,10 @@ extension CheckRetValueOpenJellycoreTests {
 					<dict>
 						<key>Aggrandizements</key>
 						<array/>
-						<key>OutputName</key>
-						<string>meaningOfLife</string>
-						<key>OutputUUID</key>
-						<string>50D9DE15-7E90-4315-9F2E-6A1596E07398</string>
 						<key>Type</key>
-						<string>ActionOutput</string>
+						<string>Variable</string>
+						<key>VariableName</key>
+						<string>meaningOfLife</string>
 					</dict>
 					<key>WFSerializationType</key>
 					<string>WFTextTokenAttachment</string>

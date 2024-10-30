@@ -41,7 +41,7 @@ extension CheckRetValueOpenJellycoreTests {
 					<string>WFTextTokenAttachment</string>
 				</dict>
 				<key>WFVariableName</key>
-				<string>function-dispatch-62C189FC-1CBF-46C3-9DB2-C5E2CC675AE8</string>
+				<string>function-dispatch-0B4CB533-EAF9-47CE-8679-6A010ABA7C32</string>
 			</dict>
 		</dict>
 		<dict>
@@ -50,7 +50,7 @@ extension CheckRetValueOpenJellycoreTests {
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>GroupingIdentifier</key>
-				<string>B59A48C2-F904-4373-A011-C07F5E183E0B</string>
+				<string>702483BF-155A-407F-8CE5-E40238BD32B6</string>
 				<key>WFCondition</key>
 				<integer>4</integer>
 				<key>WFConditionalActionString</key>
@@ -77,7 +77,7 @@ extension CheckRetValueOpenJellycoreTests {
 							<key>Type</key>
 							<string>Variable</string>
 							<key>VariableName</key>
-							<string>function-dispatch-62C189FC-1CBF-46C3-9DB2-C5E2CC675AE8</string>
+							<string>function-dispatch-0B4CB533-EAF9-47CE-8679-6A010ABA7C32</string>
 						</dict>
 						<key>WFSerializationType</key>
 						<string>WFTextTokenAttachment</string>
@@ -93,7 +93,7 @@ extension CheckRetValueOpenJellycoreTests {
 				<key>CustomOutputName</key>
 				<string>dictionaryVariable</string>
 				<key>UUID</key>
-				<string>2B505723-F8ED-4182-B2AA-0343C47DB9D6</string>
+				<string>0D7396BE-A2FF-4FEC-8DD3-159F7A776FF0</string>
 				<key>WFItems</key>
 				<dict>
 					<key>Value</key>
@@ -104,12 +104,30 @@ extension CheckRetValueOpenJellycoreTests {
 								<key>WFItemType</key>
 								<real>0.0</real>
 								<key>WFKey</key>
-								<string>FUNCTION_CALL_NAME</string>
+								<dict>
+									<key>Value</key>
+									<dict>
+										<key>string</key>
+										<string>FUNCTION_CALL_NAME</string>
+									</dict>
+									<key>WFSerializationType</key>
+									<string>WFTextTokenString</string>
+								</dict>
 								<key>WFValue</key>
-								<string>test</string>
+								<dict>
+									<key>Value</key>
+									<dict>
+										<key>string</key>
+										<string>test</string>
+									</dict>
+									<key>WFSerializationType</key>
+									<string>WFTextTokenString</string>
+								</dict>
 							</dict>
 						</array>
 					</dict>
+					<key>WFSerializationType</key>
+					<string>WFDictionaryFieldValue</string>
 				</dict>
 			</dict>
 		</dict>
@@ -141,7 +159,7 @@ End test Function
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>GroupingIdentifier</key>
-				<string>B59A48C2-F904-4373-A011-C07F5E183E0B</string>
+				<string>702483BF-155A-407F-8CE5-E40238BD32B6</string>
 				<key>WFControlFlowMode</key>
 				<integer>1</integer>
 			</dict>
@@ -160,7 +178,7 @@ End test Function
 						<key>OutputName</key>
 						<string>dictionaryVariable</string>
 						<key>OutputUUID</key>
-						<string>2B505723-F8ED-4182-B2AA-0343C47DB9D6</string>
+						<string>0D7396BE-A2FF-4FEC-8DD3-159F7A776FF0</string>
 						<key>Type</key>
 						<string>ActionOutput</string>
 					</dict>
@@ -179,7 +197,7 @@ End test Function
 			<key>WFWorkflowActionParameters</key>
 			<dict>
 				<key>GroupingIdentifier</key>
-				<string>B59A48C2-F904-4373-A011-C07F5E183E0B</string>
+				<string>702483BF-155A-407F-8CE5-E40238BD32B6</string>
 				<key>WFControlFlowMode</key>
 				<integer>2</integer>
 			</dict>
