@@ -8,3 +8,6 @@ DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
 jelly
+resources/orig
+resources/secretLab
+default.profraw
