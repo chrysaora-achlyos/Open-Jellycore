@@ -12,7 +12,18 @@ final class Issue29Test: XCTestCase {
         """)
     }
     
+    
     func testIssue29Test000a() throws {
+        try execute(with: """
+        import Shortcuts
+        var header = {"Content-Type": "application/json; charset=UTF-8"}
+        var cmsURL = "http://www.jahoo.com"
+        dictionary(json: {}) >> reqDict
+        downloadURL( url: cmsURL, method: GET, headers: header, requestType: File, requestVar: reqDict) >> response
+        """)
+    }
+    
+    func testIssue29Test000b() throws {
         try execute(with: """
         import Shortcuts
         dictionary() >> header0
