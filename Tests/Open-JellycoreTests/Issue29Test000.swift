@@ -23,15 +23,16 @@ final class Issue29Test: XCTestCase {
         """)
     }
     
+    // header needs to be a json string, a variable holding a json string, or a varible output directly from the dictionary(json:) function
     func testIssue29Test000b() throws {
         try execute(with: """
         import Shortcuts
         dictionary() >> header0
-        setValue(key: Content-Type, value: "application/json; charset=UTF-8", dictionary: header0) >> header
+        setValue(key: "Content-Type", value: "application/json; charset=UTF-8", dictionary: header0) >> header
         var cmsURL = "http://www.jahoo.com"
         dictionary(json: {}) >> reqDict
         downloadURL( url: cmsURL, method: GET, headers: header, requestType: File, requestVar: reqDict) >> response
-        """)
+        """, shouldFail: true)
     }
     
     func testIssue29Test001() throws {
@@ -43,6 +44,7 @@ final class Issue29Test: XCTestCase {
         """)
     }
     
+    // header needs to be a json string, a variable holding a json string, or a varible output directly from the dictionary(json:) function
     func testIssue29Test001a() throws {
         try execute(with: """
         import Shortcuts
@@ -50,7 +52,7 @@ final class Issue29Test: XCTestCase {
         setValue(key: Content-Type, value: "application/json; charset=UTF-8", dictionary: header0) >> header
         dictionary() >> reqDict
         downloadURL( url: "http://www.jahoo.com", method: GET, headers: header, requestType: File, requestVar: reqDict) >> response
-        """)
+        """,shouldFail: true)
     }
     
     func testIssue29Test002() throws {

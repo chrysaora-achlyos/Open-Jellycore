@@ -84,7 +84,11 @@ struct JellyDictionary: JellyPrimitiveType {
                 if let retStr = variable.value as? String {
                     return retStr
                 }
-                return variable.dongle
+                if variable.dongle.trimmingCharacters(in: .whitespaces).hasPrefix("{") {
+                    return variable.dongle
+                }
+                EventReporter.shared.reportError(error: .variableValueUnexpected(variable: variable.name), node: nil)
+                return ""
             }
         } else if value.type.rawValue == "json_object_value" {
             return value.content

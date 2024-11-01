@@ -43,6 +43,8 @@ public class JellycoreError: LocalizedError, Identifiable {
         case missingParameter(function: String, name: String)
         /// This error is raised when a variable that the user uses has not been initialized anywhere else in the Jelly file.
         case variableDoesNotExist(variable: String)
+        /// This error is raised when a variable value is unexpected
+        case variableValueUnexpected(variable: String)
         /// This error is raised when an invalid type coercion is detected.
         case invalidTypeCoercion(type: String)
         /// This error is raised when Swift's `JSONSerialization` is unable to parse user provided JSON
@@ -85,6 +87,8 @@ public class JellycoreError: LocalizedError, Identifiable {
                 return "Missing parameter \(name) in \(function)."
             case .variableDoesNotExist(let variable):
                 return "Variable \(variable) does not exist."
+            case .variableValueUnexpected(let variable):
+                return "Variable \(variable) has unexpected value."
             case .invalidTypeCoercion(let type):
                 return "\(type) is not a valid 'as' coercion."
             case .unableToParseJSON(let jsonError):
@@ -254,6 +258,13 @@ extension JellycoreError {
     /// - Returns: A JellycoreError that has been completed based on the type of error.
     static func variableDoesNotExist(variable: String) -> JellycoreError {
         return JellycoreError(underlyingError: .variableDoesNotExist(variable: variable), level: .error, recoveryStrategy: "Make sure that you have initialized the variable \(variable)")
+    }
+    
+    /// A Jellycore error that represents the ``JellycoreUnderlyingError/variableValueUnexpected(variable:)`` underlying error.
+    /// - Parameter variable: The name of the variable that has unexpected value.
+    /// - Returns: A JellycoreError that has been completed based on the type of error.
+    static func variableValueUnexpected(variable: String) -> JellycoreError {
+        return JellycoreError(underlyingError: .variableValueUnexpected(variable: variable), level: .error, recoveryStrategy: "Make sure that you have proper value type in variable \(variable)")
     }
     
     /// A Jellycore error that represents the ``JellycoreUnderlyingError/invalidTypeCoercion(type:)`` underlying error.
