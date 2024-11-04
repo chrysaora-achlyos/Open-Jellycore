@@ -75,16 +75,18 @@ final class Issue19Test: XCTestCase {
          """)
     }
     
-    // WRONG compiles, but generates wrong results  [ ] FIX
+    // shouldFail because runTimeDict value is unknown at compile time,
+    // should be using requestType: File  as in testIssue19Test003a_requstTypeFile_requestVarRuntime
     func testIssue19Test003a_requstTypeJson_requestJsonRuntime() throws {
         try execute(with: """
          import Shortcuts
          var unused = {}
          dictionary(json: {"k": "v"}) >> compileTimeDict
          setValue(key: "k", value: "newValue", dictionary: compileTimeDict) >> runTimeDict
+         dictionary(json: {"unlucky": "13"}) >> randy
          downloadURL( url: "http://echo.free.beeceptor.com/sample-request?author=beeceptor", method: POST, headers: {"Content-Type": "application/json; charset=utf-8"}, requestType: Json, requestJSON: runTimeDict, requestVar: unused) >> response
          quicklook(input: response)
-         """)
+         """, shouldFail: true)
     }
     
     // PROPER use requestVar with runtime modified dictionary

@@ -774,12 +774,16 @@ extension Compiler {
                 magicVariable = Variable(uuid: UUID().uuidString, name: magicVariableNode.identifier?.content ?? "No Name", valueType: .magicVariable, value: foundFunction)
                 scope.variables.append(magicVariable!) // Variable has to initialize so it is okay to bang out the variable here
             }
-
+            
+            // UGLY ontop of UGLY, KLUDGE, return here and do proper
             if let mName = magicVariable?.name {
-                if let workingVar = Scope.find(mName, in: scope.variables) {
-                    workingVar.dongle = magicVariable?.uuid ?? ""
+                if node.name == "dictionary" {
+                    if let workingVar = Scope.find(mName, in: scope.variables) {
+                        workingVar.dongle = magicVariable?.uuid ?? ""
+                    }
                 }
             }
+            
             let builtFunction = foundFunction.build(call: node.parameters, magicVariable: magicVariable, scopedVariables: scope.variables)
             return [builtFunction]
         } else {
