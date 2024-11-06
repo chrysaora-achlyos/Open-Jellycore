@@ -209,4 +209,20 @@ final class CheckRetValueOpenJellycoreTests: XCTestCase {
         try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
 
     }
+    
+    func testIssue19() throws {
+        let expectedStr = retval_OpenJellycoreTests_testIssue19
+        let testString = """
+         import Shortcuts
+         dictionary(json: {"Content-Type": "application/json; charset=UTF-8"}) >> header
+         dictionary(json: {}) >> unused
+         var aa = "A"
+         var runtimeString = {"k":"77${aa}88"}
+         var url = "http://echo.free.beeceptor.com/sample-request?author=beeceptor"
+         downloadURL(url: url, method: POST, headers: header, requestType: File, requestJSON: unused, requestVar: runtimeString) >> response
+         quicklook(input: response)
+         """
+        try executeCheckReturn(with: testString, shouldFail: false, optExpectedStr: expectedStr)
+
+    }
 }
