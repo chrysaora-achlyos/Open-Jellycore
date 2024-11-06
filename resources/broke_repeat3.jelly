@@ -1,6 +1,0 @@
-import Shortcuts
-
-repeat(3  { 
-	wait(seconds: 3)
-}
-
